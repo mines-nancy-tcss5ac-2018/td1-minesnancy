@@ -1,0 +1,49 @@
+def inverser(a): #Cette fonction a pour but d'inverser un nombre.
+    nombrechaine=str(a) #On convertit le nombre en châine de caractères
+    c=0 #On initialise un nombre à 0
+    for i in range(len(nombrechaine)): #On parcourt chaque élément de la châine de caractères
+        c+=(int(nombrechaine[i]))*(10**(i)) #On inverse la position de chaque chiffre par multiplication par un facteur 10
+    return c 
+
+def palindrome(a): #Fonction permettant de vérifier si un nombre est palindromique
+    chaine=str(a) #On convertit en chaîne de caractères
+    b=len(chaine) #On va parcourir la moitié de la chaine 
+    if b%2!=0: #Le nombre ne peut pas être palindromique si son nombre de chiffres est impair
+        return False
+    for i in range((b//2)+1): #On teste tous les nombres jusqu'à la moitié. Un nombre palyndromique à chiffres impair n'existe pas. 
+        if chaine[i]!=chaine[b-i-1]: #On compare les nombres de bout à bout
+            return False  
+    else:
+        return True
+        
+        
+def existedeja(a,L): #Une fonction permettant de vérifier si un élélment est déjà dans la liste
+    a=len(L)
+    for i in range(a): #On parcourt la liste d'éléments
+        if L[i]==a: 
+            return True
+    else:
+        return False
+    
+            
+def solve():
+    l=[]
+    nlychrel=0 #On part de 0 nombres de lychrel
+    for i in range(10000): #On teste tous les nombres jusqu'à 10 000
+        iteration=0 
+        n=i  # On considère le nombre n à étudier
+        while iteration<50: #On se limite à 50 iterations
+            if palindrome(n)==True: #On vérifie en entrée si le nombre est palyndromique
+                iteration+=50
+                if existedeja(n,l)==False: #On vérifie si l'élément est déjà dans la liste
+                    l.append(n)
+                    nlychrel+=1 #C'est donc un nombre de lychrel
+                    
+            else:
+                n+=inverser(i) #Dans l'autre cas on rajoute l'inverse au nombre
+                iteration+=1   #On a effectué une itération parmis les 50. 
+    return nlychrel
+    
+            
+
+    
